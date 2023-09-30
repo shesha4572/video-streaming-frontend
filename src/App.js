@@ -1,19 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
+import './App.css';
+import Header from "./Header";
+import Sidebar from './Sidebar';
+import RecommendedVideos from './RecommendedVideos';
 
-const App = () => {
+function App() {
   return (
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </div>
-      </Router>
+    <div className="App">
+      <Header />
+      <div className="app_page">
+        <Sidebar />
+        <RecommendedVideos />
+      </div>
+    </div>
   );
-};
+}
 
 export default App;
