@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Login.css';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -20,9 +21,9 @@ const Login = () => {
 
         try {
             const response = await axios.post('/api/login', formData);
-            console.log(response.data); // Handle success
+            console.log(response.data);
         } catch (error) {
-            console.error(error); // Handle error
+            console.error(error);
         }
     };
 

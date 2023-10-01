@@ -14,6 +14,21 @@
     margin-left: 14px;
 }
 
+.videoRow_text>h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.videoRow_headline {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.videoRow_description {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
 .videoRow_subs {
     background-color: lightgray;
     padding: 2px;

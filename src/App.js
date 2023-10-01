@@ -1,31 +1,44 @@
 import './App.css';
 import React from 'react';
-import Header from "./Header";
-import Sidebar from './Sidebar';
-import SearchPage from './SearchPage';
-import RecommendedVideos from './RecommendedVideos';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Layout/Header";
+import Sidebar from './components/Layout/Sidebar';
+import SearchPage from './components/Search/SearchPage';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
+import RecommendedVideos from './components/Video/RecommendedVideos';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <Switch>
-          <Route path='/'>
-            <div className="app_page">
-              <Sidebar />
-              <RecommendedVideos />
-            </div>
-          </Route>
-          <Route path='/search/:searchTerm'>
-            <div className="app_page">
-              <Sidebar />
-              <SearchPage />
-            </div>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path='/'
+            element={
+              <div>
+                <Header />
+                <div className="app_page">
+                  <Sidebar />
+                  <RecommendedVideos />
+                </div>
+              </div>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path='/search/:searchTerm'
+            element={
+              <div>
+                <Header />
+                <div className="app_page">
+                  <Sidebar />
+                  <SearchPage />
+                </div>
+              </div>
+            }
+          />
+        </Routes>
       </Router>
     </div>
   );

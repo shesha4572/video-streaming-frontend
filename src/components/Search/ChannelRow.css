@@ -12,12 +12,16 @@
 .channelRow_text>p {
     color: #606060;
     font-size: small !important;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .channelRow_text>h4 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .channelRow_logo {

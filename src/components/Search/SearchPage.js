@@ -27,7 +27,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -36,7 +36,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -45,7 +45,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -54,7 +54,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -63,7 +63,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -72,7 +72,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
             <VideoRow
@@ -81,7 +81,7 @@ function SearchPage() {
                 description="Learn Web Development in 10 minutes!!"
                 timestamp="59 seconds ago"
                 channel="Simpililearn"
-                title="Let's build a clone of TikTok with RectJs"
+                title="Let's build a clone of TikTok with ReactJs"
                 image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
             />
         </div>

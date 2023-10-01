@@ -8,6 +8,7 @@
 .recommendedVideos>h2 {
     margin-left: 5px;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 .recommendedVideos_videos {
