@@ -22,17 +22,18 @@ const Signup = () => {
 
         try {
             const response = await axios.post('/api/signup', formData);
-            console.log(response.data); // Handle success
+            console.log(response.data);
         } catch (error) {
-            console.error(error); // Handle error
+            console.error(error);
         }
     };
 
     return (
-        <div>
-            <h2>Sign Up</h2>
+        <div className='signup_page'>
+            <h2 className='signup_head'>Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 <input
+                    className='signup_input'
                     type="text"
                     name="name"
                     placeholder="Name"
@@ -40,6 +41,7 @@ const Signup = () => {
                     onChange={handleChange}
                 />
                 <input
+                    className='signup_input'
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -47,13 +49,14 @@ const Signup = () => {
                     onChange={handleChange}
                 />
                 <input
+                    className='signup_input'
                     type="password"
                     name="password"
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                 />
-                <button type="submit">Sign Up</button>
+                <button className='submit_button' type="submit">Sign Up</button>
             </form>
         </div>
     );
