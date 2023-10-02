@@ -6,6 +6,7 @@ import SearchPage from './components/Search/SearchPage';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import RecommendedVideos from './components/Video/RecommendedVideos';
+import Welcome from './components/Welcome';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -14,7 +15,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/'
+          <Route path="/" element={<Welcome/>} />
+          <Route path='/home'
             element={
               <div>
                 <Header />
