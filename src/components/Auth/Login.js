@@ -47,7 +47,7 @@ const Login = () => {
                     value={formData.password}
                     onChange={handleChange}
                 />
-                <button type="submit" className='login_button'>Login</button>
+                <a href='/home' className='login_button'>Login</a>
             </form>
         </div>
     );

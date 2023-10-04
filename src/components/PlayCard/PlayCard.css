@@ -1,0 +1,25 @@
+
+
+.body {
+    background-color: rgb(5, 0, 0);
+  }
+  
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .right-bottom {
+    color-scheme: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px; 
+  }
+  
+  
+  .move-right-up {
+    margin-left: 20px; 
+    margin-top: -20px; 
+  }
+  

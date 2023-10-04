@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Layout/Header";
 import Sidebar from './components/Layout/Sidebar';
 import SearchPage from './components/Search/SearchPage';
@@ -10,6 +11,7 @@ import Player from "./components/VideoPlayer/Player";
 import Uploader from "./components/Uploader/Uploader";
 import Welcome from './components/Welcome';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PlayCard from './components/PlayCard/PlayCard';
 
 function App() {
   return (
@@ -17,7 +19,13 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
-            <Route path="/login" element={<Login />} />
+
+            <Route path="/login" element={
+              <div>
+            <Login />
+            </div>
+            } />
+
             <Route path="/signup" element={<Signup />} />
           <Route path='/home'
             element={
@@ -50,7 +58,7 @@ function App() {
               </div>
             }
           />
-          <Route path='/uploader' element={
+          <Route path='/upload' element={
             <div>
               <Header />
               <div className="app_page">
@@ -60,6 +68,15 @@ function App() {
                 </div>
               </div>
             </div>
+          } />
+          <Route path='/playcard' element={
+            // <div>
+            // <Header />
+            // <div className='app_page'>
+            //   <Sidebar />
+              <PlayCard />
+            // </div>
+            // </div>
           } />
         </Routes>
       </Router>
