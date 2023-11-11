@@ -1,83 +1,94 @@
+// App.js
 import './App.css';
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Header from "./components/Layout/Header";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
+import RecommendedVideos from './components/Video/RecommendedVideos';
+import Welcome from './components/Welcome';
+import Player from './components/VideoPlayer/Player';
 import SearchPage from './components/Search/SearchPage';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
-import RecommendedVideos from './components/Video/RecommendedVideos';
-import Player from "./components/VideoPlayer/Player";
-import Uploader from "./components/Uploader/Uploader";
-import Welcome from './components/Welcome';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Uploader from './components/Uploader/Uploader';
 import PlayCard from './components/PlayCard/PlayCard';
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
-
-            <Route path="/login" element={
-              <div>
-            <Login />
-            </div>
-            } />
-
-            <Route path="/signup" element={<Signup />} />
-          <Route path='/home'
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/home"
             element={
               <div>
-                <Header />
+                <Header onMenuClick={toggleSidebar} />
                 <div className="app_page">
-                  <Sidebar />
+                  {isSidebarOpen && <Sidebar />}
                   <RecommendedVideos />
                 </div>
               </div>
             }
           />
-          <Route path='/play' element={
-            <div>
-              <Header />
-              <div className="app_page">
-                <Sidebar />
-                <Player />
-              </div>
-            </div>
-          } />
-          <Route path='/search/:searchTerm'
+          <Route
+            path="/play"
             element={
               <div>
-                <Header />
+                <Header onMenuClick={toggleSidebar} />
                 <div className="app_page">
-                  <Sidebar />
+                  {isSidebarOpen && <Sidebar />}
+                  <Player />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/search/:searchTerm"
+            element={
+              <div>
+                <Header onMenuClick={toggleSidebar} />
+                <div className="app_page">
+                  {isSidebarOpen && <Sidebar />}
                   <SearchPage />
                 </div>
               </div>
             }
           />
-          <Route path='/upload' element={
-            <div>
-              <Header />
-              <div className="app_page">
-                <Sidebar />
-                <div className='uploader_body'>
-                  <Uploader />
+          <Route
+            path="/upload"
+            element={
+              <div>
+                <Header onMenuClick={toggleSidebar} />
+                <div className="app_page">
+                  {isSidebarOpen && <Sidebar />}
+                  <div className="uploader_body">
+                    <Uploader />
+                  </div>
                 </div>
               </div>
-            </div>
-          } />
-          <Route path='/playcard' element={
-            // <div>
-            // <Header />
-            // <div className='app_page'>
-            //   <Sidebar />
-              <PlayCard />
-            // </div>
-            // </div>
-          } />
+            }
+          />
+          <Route
+            path="/playcard"
+            element={
+              <div>
+                <Header onMenuClick={toggleSidebar} />
+                <div className="app_page">
+                  {isSidebarOpen && <Sidebar />}
+                  <PlayCard />
+                </div>
+              </div>
+            }
+          />
         </Routes>
       </Router>
     </div>
