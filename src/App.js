@@ -1,9 +1,9 @@
-// App.js
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
+import SidebarUpload from "./components/Uploader/SidebarUpload";
 import RecommendedVideos from './components/Video/RecommendedVideos';
 import Welcome from './components/Welcome/Welcome';
 import Player from './components/VideoPlayer/Player';
@@ -15,11 +15,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   return (
     <div className="App">
@@ -34,9 +29,9 @@ function App() {
             path="/home"
             element={
               <div>
-                <Header onMenuClick={toggleSidebar} />
+                <Header />
                 <div className="app_page">
-                  {isSidebarOpen && <Sidebar />}
+                  <Sidebar />
                   <RecommendedVideos />
                 </div>
               </div>
@@ -46,9 +41,9 @@ function App() {
             path="/play"
             element={
               <div>
-                <Header onMenuClick={toggleSidebar} />
+                <Header />
                 <div className="app_page">
-                  {isSidebarOpen && <Sidebar />}
+                  <Sidebar />
                   <Player />
                 </div>
               </div>
@@ -58,9 +53,9 @@ function App() {
             path="/search/:searchTerm"
             element={
               <div>
-                <Header onMenuClick={toggleSidebar} />
+                <Header />
                 <div className="app_page">
-                  {isSidebarOpen && <Sidebar />}
+                    <Sidebar />
                   <SearchPage />
                 </div>
               </div>
@@ -70,10 +65,10 @@ function App() {
             path="/upload"
             element={
               <div>
-                <Header onMenuClick={toggleSidebar} />
+                <Header />
                 <div className="app_page">
-                  {isSidebarOpen && <Sidebar />}
                   <div className="uploader_body">
+                      <SidebarUpload />
                     <Uploader />
                   </div>
                 </div>
@@ -84,9 +79,9 @@ function App() {
             path="/playcard"
             element={
               <div>
-                <Header onMenuClick={toggleSidebar} />
+                <Header />
                 <div className="app_page">
-                  {isSidebarOpen && <Sidebar />}
+                    <Sidebar />
                   <PlayCard />
                 </div>
               </div>

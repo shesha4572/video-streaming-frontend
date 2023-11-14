@@ -1,8 +1,9 @@
-.sidebar {
+.sidebar-upload {
     flex: 0.15;
+    margin-top: -100px;
 }
 
-.sidebar>hr {
+.sidebar-upload>hr {
     height: 1px;
     border: 0;
     background-color: lightgray;

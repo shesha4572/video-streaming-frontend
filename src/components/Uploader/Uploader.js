@@ -84,8 +84,8 @@ function Uploader() {
 
     return (
         <div id="app-body-uploader">
-            <Stack>
-                <form style={{marginTop: '130px'}}>
+            <Stack style={{marginTop: '150px'}}>
+                <form>
                     <input
                         id="uploader-form-3"
                         type="text"
@@ -145,12 +145,12 @@ function Uploader() {
                         />
                     </span>
                 </section>
+                <div id="upload-button">
+                    {video && (
+                        <button onClick={uploadFileChunks}>Upload Video</button>
+                    )}
+                </div>
             </Stack>
-            <div id="upload-button">
-                {video && (
-                    <button onClick={uploadFileChunks}>Upload Video</button>
-                )}
-            </div>
         </div>
     );
 }

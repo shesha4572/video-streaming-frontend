@@ -2,9 +2,6 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-}
-
-.sideBarRow {
     color: #606060;
     font-size: large !important;
 }
@@ -16,27 +13,16 @@
     font-weight: 400;
 }
 
-.sideBarRow:hover {
-    background-color: lightgray;
-    cursor: pointer;
-}
-
-.sideBarRow:hover>.sideBarRow_icon {
-    color: red;
-}
-
-.sideBarRow:hover>.sideBarRow_title {
-    font-weight: bold;
-}
-
-.sideBarRow.selected {
+.sideBarRow:hover, .sideBarRow.selected {
     background-color: lightgray;
 }
 
-.sideBarRow.selected>.sideBarRow_icon {
+.sideBarRow:hover .sideBarRow_icon,
+.sideBarRow.selected .sideBarRow_icon {
     color: red;
 }
 
-.sideBarRow.selected>.sideBarRow_title {
+.sideBarRow:hover .sideBarRow_title,
+.sideBarRow.selected .sideBarRow_title {
     font-weight: bold;
 }

@@ -2,17 +2,6 @@
     display: flex;
 }
 
-.content-container {
-    display: flex;
-    width: 100%;
-}
-
-.content {
-    flex: 1;
-    overflow: hidden;
-    padding: 20px;
-}
-
 .uploader_body {
     width: 100vw;
     height: 70vh;
