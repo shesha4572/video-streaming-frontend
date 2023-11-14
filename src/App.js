@@ -9,9 +9,10 @@ import Welcome from './components/Welcome';
 import Player from './components/VideoPlayer/Player';
 import SearchPage from './components/Search/SearchPage';
 import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
 import Uploader from './components/Uploader/Uploader';
 import PlayCard from './components/PlayCard/PlayCard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,11 +23,13 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <ToastContainer />
+      </div>
       <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
           <Route
             path="/home"
             element={

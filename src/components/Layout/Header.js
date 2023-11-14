@@ -36,12 +36,14 @@ function Header() {
                     </Link>
                 </div>
                 <div className="header_icons">
-                    <VideoCallIcon className="header_icon" />
+                    <Link to="/upload">
+                        <VideoCallIcon className="header_icon" />
+                    </Link>
                     <Avatar className="header_icon" src="" alt="Avatar" />
                     <p>John Doe</p>
                 </div>
             </div>
-            {isSidebarOpen && <Sidebar />} {/* Render the Sidebar conditionally */}
+            {isSidebarOpen && <Sidebar />}
         </>
     );
 }
