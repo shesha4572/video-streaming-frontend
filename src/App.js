@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
 import RecommendedVideos from './components/Video/RecommendedVideos';
-import Welcome from './components/Welcome';
+import Welcome from './components/Welcome/Welcome';
 import Player from './components/VideoPlayer/Player';
 import SearchPage from './components/Search/SearchPage';
 import Login from './components/Auth/Login';

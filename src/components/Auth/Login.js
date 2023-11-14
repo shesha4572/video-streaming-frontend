@@ -7,7 +7,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
-const Login = (props) => {
+const Login = () => {
 
     const [userDataSignUp, setUserDataSignUp] = useState({
         name: "",
@@ -15,6 +15,7 @@ const Login = (props) => {
         email: "",
         password: "",
     });
+
     const [userData, setUserData] = useState({
         email: "",
         password: "",
