@@ -5,7 +5,6 @@ import landingImg from '../../assets/landing.png';
 export default function Welcome() {
     return (
         <div className="relative h-screen w-full bg-red-100 md:bg-red-400">
-            {/* Welcome Section */}
             <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-gray-800">
                 <form className="max-w-[400px] w-full mx-auto bg-gray-200 p-8 px-8 rounded-lg">
                     <h1 className="text-4xl font-bold mb-4">WELCOME</h1>
