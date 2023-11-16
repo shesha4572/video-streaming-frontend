@@ -32,9 +32,11 @@ function Header() {
             <div className="header_icons">
                 <Link to='/upload'>
                 <VideoCallIcon className='header_icon' />
-            </Link>
+                </Link>
+                <Link to='/profile' onClick={(e) => e.preventDefault()}>
                 <Avatar className='header_icon' src="" alt="Avatar" />
-                <p>John Doe</p>
+                </Link>
+
             </div>
         </div>
     );

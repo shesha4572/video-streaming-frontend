@@ -11,9 +11,6 @@ export default function Welcome() {
                     <Link to="/login" className="text-gray-600 py-2 block border-b border-gray-300 hover:text-pink-800 hover:border-pink-800 transition duration-300">
                         Login
                     </Link>
-                    <Link to="/signup" className="text-gray-600 py-2 block border-b border-gray-300 hover:text-pink-800 hover:border-pink-800 transition duration-300">
-                        Don't have an account? Sign Up
-                    </Link>
                 </form>
             </div>
 

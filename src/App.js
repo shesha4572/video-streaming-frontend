@@ -13,6 +13,7 @@ import Uploader from './components/Uploader/Uploader';
 import PlayCard from './components/PlayCard/PlayCard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserProfile from './components/UserProfile/UserProfile'; 
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
-          <Route
+\          <Route
             path="/home"
             element={
               <div>
@@ -85,6 +86,15 @@ function App() {
                   <PlayCard />
                 </div>
               </div>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <div>
+                  <UserProfile />
+                </div>
+              
             }
           />
         </Routes>
