@@ -3,7 +3,10 @@ import './VideoRow.css';
 import { Link } from 'react-router-dom';
 
 function VideoRow({ title, views, timestamp, channel, description, image, internalField }) {
+  console.log('VideoRow Props:', { title, views, timestamp, channel, description, image, internalField });
+
   return (
+    
     <div className='videoRow'>
       <Link to={`/play/${internalField}`}>
         <img src={image} alt="" />

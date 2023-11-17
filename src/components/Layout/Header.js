@@ -13,12 +13,16 @@ function Header() {
   const [usernameInput, setUsernameInput] = useState('');
   const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
-    setUsernameInput(e.target.value);
+  const handleUsernameChange = () => {
+    const newUsername = prompt('Enter username:');
+    if (newUsername !== null) {
+      setUsernameInput(newUsername);
+      navigate(`/profile/${newUsername}`);
+    }
   };
 
   const handleSearchClick = () => {
-    if (inputSearch.trim() !== '') {
+    if (inputSearch !== '') {
       navigate(`/search/${inputSearch}`);
     }
   };
@@ -44,15 +48,7 @@ function Header() {
         <Link to='/upload'>
           <VideoCallIcon className='header_icon' />
         </Link>
-        <Link to={`/profile/${usernameInput}`}>
-          <Avatar className='header_icon' src="" alt="Avatar" />
-        </Link>
-        <input
-          type="text"
-          placeholder='Enter username'
-          value={usernameInput}
-          onChange={handleUsernameChange}
-        />
+        <Avatar className="header_icon" src="" alt="Avatar" onClick={handleUsernameChange} />
       </div>
     </div>
   );

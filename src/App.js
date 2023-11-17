@@ -51,7 +51,7 @@ function App() {
             }
           />
           <Route
-            path="/search/:searchTerm"
+            path="/search/:searchString"
             element={
               <div>
                 <Header />
