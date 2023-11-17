@@ -33,9 +33,9 @@ function Header() {
                 <Link to='/upload'>
                 <VideoCallIcon className='header_icon' />
                 </Link>
-                <Link to='/profile' onClick={(e) => e.preventDefault()}>
+                <Link to='/profile'>
                 <Avatar className='header_icon' src="" alt="Avatar" />
-                </Link>
+            </Link>
 
             </div>
         </div>

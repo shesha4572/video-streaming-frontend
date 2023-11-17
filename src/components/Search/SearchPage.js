@@ -1,91 +1,57 @@
-import React from 'react';
 import './SearchPage.css';
-import TuneIcon from '@mui/icons-material/Tune';
-import ChannelRow from './ChannelRow';
+import React, { useState, useEffect } from 'react';
 import VideoRow from './VideoRow';
 
-function SearchPage() {
+function SearchPage({ searchString }) {
+    const [videos, setVideos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://early-pugs-stand.loca.lt/api/v1/video/search/a`);
+        
+                const contentType = response.headers.get('content-type');
+                
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    setVideos(data);
+                    setLoading(false);
+                } else {
+                    throw new Error(`Unexpected response type: ${contentType}`);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setError(error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [searchString]);
+
     return (
         <div className='searchPage'>
-            <div className="searchPage_filter">
-                <TuneIcon />
-                <h2>FILTER </h2>
-            </div>
             <hr />
-            <ChannelRow
-                image="https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj"
-                channel="Simpililearn"
-                verified
-                subs="23K"
-                noOfVideos={301}
-                description="You can find awesome videos here"
-            />
-            <hr />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
-            <VideoRow
-                views="1.2M"
-                subs="23K"
-                description="Learn Web Development in 10 minutes!!"
-                timestamp="59 seconds ago"
-                channel="Simpililearn"
-                title="Let's build a clone of TikTok with ReactJs"
-                image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
-            />
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error.message}</p>}
+            {videos.map((video) => (
+                <div>
+                    <hr />
+                    <VideoRow
+                        title={video.title}
+                        views={video.viewCounter}
+                        timestamp={video.uploadedOn}
+                        channel={video.ownerDisplayName}
+                        description={video.desc}
+                        image={video.thumbnailLink}
+                    />
+                    <hr />
+                </div>
+            ))}
         </div>
-    )
+    );
 }
 
-export default SearchPage
+export default SearchPage;

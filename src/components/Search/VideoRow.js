@@ -1,7 +1,7 @@
 import React from 'react';
 import './VideoRow.css';
 
-function VideoRow({ views, subs, description, timestamp, channel, title, image }) {
+function VideoRow({ title, views, timestamp, channel, description, image }) {
     return (
         <div className='videoRow'>
             <img src={image} alt="" />
@@ -10,14 +10,14 @@ function VideoRow({ views, subs, description, timestamp, channel, title, image }
                     {title}
                 </h3>
                 <p className='videoRow_headline'>
-                    {channel} . <span className='videoRow_subs'><span className="videoRow_subsNumber">{subs}</span> Subscribers</span> {views} views . {timestamp}
+                    {channel} . {views} views . {timestamp}
                 </p>
                 <p className='videoRow_description'>
                     {description}
                 </p>
             </div>
         </div>
-    )
+    );
 }
 
-export default VideoRow
+export default VideoRow;
