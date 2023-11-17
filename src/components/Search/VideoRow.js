@@ -2,16 +2,16 @@ import React from 'react';
 import './VideoRow.css';
 import { Link } from 'react-router-dom';
 
-function VideoRow({ title, views, timestamp, channel, description, image }) {
+function VideoRow({ title, views, timestamp, channel, description, image, internalField }) {
   return (
     <div className='videoRow'>
-      <Link to="/play/key">
+      <Link to={`/play/${internalField}`}>
         <img src={image} alt="" />
       </Link>
       <div className="videoRow_text">
         <h3>{title}</h3>
         <p className='videoRow_headline'>
-          {channel} . <span className='videoRow_subs'><span className="videoRow_subsNumber">{views}</span> Subscribers</span> {views} views . {timestamp}
+          {channel} . {views} views . {timestamp}
         </p>
         <p className='videoRow_description'>
           {description}
@@ -22,5 +22,4 @@ function VideoRow({ title, views, timestamp, channel, description, image }) {
 }
 
 export default VideoRow;
-
 

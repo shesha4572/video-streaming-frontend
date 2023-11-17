@@ -4,17 +4,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import { Avatar } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const logo = 'https://img.icons8.com/dusk/64/movie-projector.png';
 
 function Header() {
   const [inputSearch, setInputSearch] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
+  const navigate = useNavigate();
 
-  
   const handleUsernameChange = (e) => {
     setUsernameInput(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    if (inputSearch.trim() !== '') {
+      navigate(`/search/${inputSearch}`);
+    }
   };
 
   return (
@@ -32,9 +38,7 @@ function Header() {
           type="text"
           placeholder='Search'
         />
-        <Link to={`/search/${inputSearch}`}>
-          <SearchIcon className="header_inputButton" />
-        </Link>
+        <SearchIcon onClick={handleSearchClick} className="header_inputButton" />
       </div>
       <div className="header_icons">
         <Link to='/upload'>
