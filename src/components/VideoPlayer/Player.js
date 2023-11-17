@@ -1,6 +1,4 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import { Button, Container, Slider, Tooltip, Typography } from "@mui/material";
 import ReactPlayer from "react-player";
 import Grid from "@mui/material/Grid";
@@ -12,6 +10,9 @@ import PauseIcon from "@mui/icons-material/Pause";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import Popover from "@mui/material/Popover";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import '../Video/RecommendedVideos.css'
+import VideoCard from '../Video/VideoCard';
 
 function ValueLabelComponent(props) {
     const { children, open, value } = props;
@@ -38,7 +39,7 @@ function Test() {
     const [currentTime, setCurrentTime] = React.useState(0);
     const [duration, setDuration] = React.useState(0);
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [showControls, setShowControls] = React.useState(false);
+    const [showControls, setShowControls] = React.useState(true);
 
     const handleMouseEnter = () => {
         setShowControls(true);
@@ -108,11 +109,14 @@ function Test() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        height: "50vh",
+        paddingBottom: "56.25%",
     };
 
     const videoStyle = {
         width: "100%",
         maxWidth: "100%",
+        height: "55",
     };
 
     const controlIconsStyle = {
@@ -143,23 +147,30 @@ function Test() {
         width: 100,
     };
 
+    const [likesCount, setLikesCount] = React.useState(0);
+
+
+    const handleLikeClick = () => {
+        setLikesCount(likesCount + 1);
+    };
+
     return (
         <React.Fragment>
-            <AppBar position="fixed">
+            {/* <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6">React Video Player</Typography>
                 </Toolbar>
             </AppBar>
-            <Toolbar />
+            <Toolbar /> */}
             <Container maxWidth="md">
                 <div
                     style={playerWrapperStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    
                 >
                     <ReactPlayer
                         ref={playerRef}
-                        style={videoStyle}
+                        // style={videoStyle}
+                        style={{ width: "100%", height: "100%" }}
                         url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
                         muted={false}
                         playing={isPlaying}
@@ -324,7 +335,73 @@ function Test() {
                         </div>
                     )}
                 </div>
+           
+                <Grid item xs={12}>
+                    <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
+                        <Grid item>
+                            <Typography variant="h4">Video Title</Typography>
+                        </Grid>
+                        <Grid item style={{ display: 'flex', alignItems: 'center' }}>
+                            <IconButton variant="contained" color="primary" onClick={handleLikeClick}>
+                                <ThumbUpIcon />
+                            </IconButton>
+                            <Typography variant="h6" style={{ marginLeft: '8px' }}>
+                                {likesCount}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="subtitle1">Views: 1000</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body1">
+                        This is a sample video description. You can add more details about the
+                        video here.
+                    </Typography>
+                </Grid>
+               
             </Container>
+            <div className='recommendedVideos'>
+                <h2>
+                    Recommended Videos
+                </h2>
+                <div className="recommendedVideos_videos">
+                    <VideoCard
+                        title="Machine Learning Full Course"
+                        views="2M views"
+                        timestamp="2 days ago"
+                        channelImage="https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj"
+                        channel="Simplilearn"
+                        image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
+                    />
+                    <VideoCard
+                        title="Machine Learning Full Course"
+                        views="2M views"
+                        timestamp="2 days ago"
+                        channelImage="https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj"
+                        channel="Simplilearn"
+                        image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
+                    />
+                    <VideoCard
+                        title="Machine Learning Full Course"
+                        views="2M views"
+                        timestamp="2 days ago"
+                        channelImage="https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj"
+                        channel="Simplilearn"
+                        image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
+                    />
+                    <VideoCard
+                        title="Machine Learning Full Course"
+                        views="2M views"
+                        timestamp="2 days ago"
+                        channelImage="https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj"
+                        channel="Simplilearn"
+                        image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
+                    />
+                    
+                </div>
+            </div>
         </React.Fragment>
     );
 }
