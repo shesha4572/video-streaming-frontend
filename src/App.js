@@ -39,7 +39,7 @@ function App() {
             }
           />
           <Route
-            path="/play"
+            path="/play/:internalField"
             element={
               <div>
                 <Header />
@@ -51,7 +51,7 @@ function App() {
             }
           />
           <Route
-            path="/search/:searchTerm"
+            path="/search/:searchString"
             element={
               <div>
                 <Header />
@@ -89,7 +89,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/profile/:username"
             element={
               <div>
                 <Header />

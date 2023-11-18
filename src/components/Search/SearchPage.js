@@ -10,10 +10,9 @@ function SearchPage({ searchString }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://early-pugs-stand.loca.lt/api/v1/video/search/a`);
-        
+                const response = await fetch(`http://early-pugs-stand.loca.lt/api/v1/video/search/${searchString}`);
                 const contentType = response.headers.get('content-type');
-                
+    
                 if (contentType && contentType.includes('application/json')) {
                     const data = await response.json();
                     setVideos(data);
@@ -27,9 +26,10 @@ function SearchPage({ searchString }) {
                 setLoading(false);
             }
         };
-
+    
         fetchData();
     }, [searchString]);
+    
 
     return (
         <div className='searchPage'>
@@ -37,7 +37,7 @@ function SearchPage({ searchString }) {
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             {videos.map((video) => (
-                <div>
+                <div key = {video.internalField}>
                     <hr />
                     <VideoRow
                         title={video.title}
@@ -46,6 +46,7 @@ function SearchPage({ searchString }) {
                         channel={video.ownerDisplayName}
                         description={video.desc}
                         image={video.thumbnailLink}
+                        internalField={video.internalField}
                     />
                     <hr />
                 </div>
