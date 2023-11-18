@@ -13,9 +13,19 @@ import Popover from "@mui/material/Popover";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import '../Video/RecommendedVideos.css'
 import VideoCard from '../Video/VideoCard';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function ValueLabelComponent(props) {
+
+const baseURL = 'http://early-pugs-stand.loca.lt/api/v1';
+var internalFileId = 'XXCo0UHlBvGWlMFXRzV6t5UxHpYFH2kA';
+
+
+function valuelabelcomponent(props) {
     const { children, open, value } = props;
+
+
+
 
     return (
         <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
@@ -154,18 +164,35 @@ function Test() {
         setLikesCount(likesCount + 1);
     };
 
+    const [details, setDetails] = useState({});
+
+
+    
+    
+    useEffect(() => {
+        async function getInfo() {
+            try {
+                const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
+                setDetails(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        getInfo();
+    }, []);
     return (
         <React.Fragment>
             {/* <AppBar position="fixed">
-                <Toolbar>
-                    <Typography variant="h6">React Video Player</Typography>
-                </Toolbar>
-            </AppBar>
-            <Toolbar /> */}
+                    <Toolbar>
+                        <Typography variant="h6">React Video Player</Typography>
+                    </Toolbar>
+                </AppBar>
+                <Toolbar /> */}
             <Container maxWidth="md">
                 <div
                     style={playerWrapperStyle}
-                    
+
                 >
                     <ReactPlayer
                         ref={playerRef}
@@ -250,7 +277,7 @@ function Test() {
                                         value={currentTime}
                                         onChange={handleSliderChange}
                                         onChangeCommitted={handleSliderSeek}
-                                        ValueLabelComponent={ValueLabelComponent}
+                                        ValueLabelComponent={valuelabelcomponent}
                                         valueLabelFormat={(value) => formatTime(value)}
                                     />
                                 </Grid>
@@ -335,11 +362,11 @@ function Test() {
                         </div>
                     )}
                 </div>
-           
+
                 <Grid item xs={12}>
                     <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
                         <Grid item>
-                            <Typography variant="h4">Video Title</Typography>
+                            <Typography variant="h4">{details['title']}</Typography>
                         </Grid>
                         <Grid item style={{ display: 'flex', alignItems: 'center' }}>
                             <IconButton variant="contained" color="primary" onClick={handleLikeClick}>
@@ -352,15 +379,15 @@ function Test() {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography variant="subtitle1">Views: 1000</Typography>
+                    <Typography variant="subtitle1">{details['viewCounter']}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="body1">
-                        This is a sample video description. You can add more details about the
-                        video here.
+                        {details['desc']}
                     </Typography>
                 </Grid>
-               
+
+
             </Container>
             <div className='recommendedVideos'>
                 <h2>
@@ -399,7 +426,7 @@ function Test() {
                         channel="Simplilearn"
                         image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
                     />
-                    
+
                 </div>
             </div>
         </React.Fragment>
