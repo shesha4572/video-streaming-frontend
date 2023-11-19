@@ -1,16 +1,20 @@
 import './SearchPage.css';
 import React, { useState, useEffect } from 'react';
 import VideoRow from './VideoRow';
+import { useParams } from 'react-router-dom';
 
-function SearchPage({ searchString }) {
+function SearchPage() {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const {searchString} = useParams()
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://early-pugs-stand.loca.lt/api/v1/video/search/${searchString}`);
+                const response = await fetch(`http://evil-ways-make.loca.lt/api/v1/video/search/${searchString}`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {

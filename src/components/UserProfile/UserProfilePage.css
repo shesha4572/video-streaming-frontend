@@ -1,0 +1,19 @@
+.user-profile-page {
+    padding: 20px;
+  }
+  
+  .header-icons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-icon {
+    text-align: center;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+  }
+  

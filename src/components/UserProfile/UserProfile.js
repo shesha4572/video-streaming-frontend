@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoList from './VideoList'; 
+import './UserProfile.css'
 
 const UserProfile = ({ userData }) => {
   if (!userData) {
@@ -11,12 +12,11 @@ const UserProfile = ({ userData }) => {
   return (
     <div className="user-profile">
       <div className="profile-info">
-        <h2>{name}</h2>
+        <h3>Name: {name}</h3>
         <p>Display Name: {displayName}</p>
         <p>Joined on: {new Date(createdOn).toLocaleDateString()}</p>
       </div>
       <div className="uploaded-videos">
-        <h3>Uploaded Videos</h3>
         <VideoList videos={uploadedVideos} />
       </div>
     </div>

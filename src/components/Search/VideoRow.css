@@ -2,12 +2,16 @@
     display: flex;
     margin-bottom: 30px;
     max-width: 700px;
+    justify-content: center;
+    align-items: center;
 }
 
 .videoRow>img {
     object-fit: contain;
     width: 246px;
     height: 138px;
+    display: block;
+    margin: auto;
 }
 
 .videoRow_text {
@@ -48,4 +52,9 @@
 .videoRow_headline {
     font-size: 12px;
     color: #606060;
+}
+
+.videoRow_headline,
+.videoRow_description {
+    margin-top: 10px;
 }

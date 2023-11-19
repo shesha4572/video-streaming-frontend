@@ -25,7 +25,7 @@ function PlayCard() {
               </Card.Text>
             </Card.Body>
             <div className="card-links">
-                <a href="/play" className="btn btn-outline-light move-right-up">Watch Now</a>
+                <a href="/play/:internalField" className="btn btn-outline-light move-right-up">Watch Now</a>
             </div>
           </Card>
         </CardGroup>

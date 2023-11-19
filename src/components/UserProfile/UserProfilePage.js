@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import UserProfile from './UserProfile';
+import './UserProfilePage.css';
 
 const UserProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -9,7 +10,7 @@ const UserProfilePage = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch(`http://early-pugs-stand.loca.lt/api/v1/profile/user/${username}`);
+      const response = await fetch(`http://evil-ways-make.loca.lt/api/v1/profile/user/${username}`);
       const data = await response.json();
       setUserData(data);
       setLoading(false);

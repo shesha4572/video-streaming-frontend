@@ -35,6 +35,7 @@ function Header() {
           <img className="header_logo" src={logo} alt="logo" />
         </Link>
       </div>
+
       <div className="header_input">
         <input
           onChange={(e) => setInputSearch(e.target.value)}
@@ -44,10 +45,12 @@ function Header() {
         />
         <SearchIcon onClick={handleSearchClick} className="header_inputButton" />
       </div>
+
       <div className="header_icons">
         <Link to='/upload'>
           <VideoCallIcon className='header_icon' />
         </Link>
+        
         <Avatar className="header_icon" src="" alt="Avatar" onClick={handleUsernameChange} />
       </div>
     </div>
