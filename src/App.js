@@ -39,7 +39,7 @@ function App() {
             }
           />
           <Route
-            path="/play/:internalField"
+            path="/play/:internalFileId"
             element={
               <div>
                 <Header />
