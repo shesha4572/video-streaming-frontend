@@ -167,13 +167,71 @@ function valuelabelcomponent(props) {
         const [likesCount, setLikesCount] = React.useState(0);
 
 
-        const handleLikeClick = () => {
-            setLikesCount(likesCount + 1);
-        };
+        
 
         const [details, setDetails] = useState({});
 
+        const [hasLiked, setHasLiked] = useState(false);
 
+        const checkLikedStatus = async () => {
+            try {
+                const response = await axios.get(`http://evil-ways-make.loca.lt/${internalFileId}`, {
+                    headers: {
+                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
+                    },
+                });
+                setHasLiked(response.status === 200);
+            } catch (error) {
+                setHasLiked(false);
+            }
+        };
+
+
+        const handleLikeClick = async () => {
+            try {
+                setLikesCount(likesCount + 1);
+
+                setHasLiked(true);
+
+                
+                await axios.post(`http://evil-ways-make.loca.lt/${internalFileId}`, {}, {
+                    headers: {
+                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
+                    },
+                });
+            } catch (error) {
+                console.error('Error liking the video:', error);
+
+                
+                setLikesCount(likesCount);
+                setHasLiked(false);
+            }
+        };
+
+
+        const incrementViewCount = async () => {
+            try {
+                await axios.post(`${baseURL}/video/view/${internalFileId}`);
+            } catch (error) {
+                
+                console.error('Error incrementing view count:', error);
+            }
+        };
+
+        useEffect(() => {
+            async function getInfo() {
+                try {
+                    const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
+                    setDetails(response.data);
+                    await checkLikedStatus();
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }
+            getInfo();
+
+            incrementViewCount();
+        }, [internalFileId]);
 
         useEffect(() => {
             async function getInfo() {
@@ -187,6 +245,8 @@ function valuelabelcomponent(props) {
             }
             getInfo();
         }, []);
+
+
         return (
             <React.Fragment>
                 {/* <AppBar position="fixed">
