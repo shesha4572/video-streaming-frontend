@@ -14,12 +14,13 @@ function Header() {
   const navigate = useNavigate();
 
   const handleUsernameChange = () => {
-    const newUsername = prompt('Enter username:');
-    if (newUsername !== null) {
-      setUsernameInput(newUsername);
-      navigate(`/profile/${newUsername}`);
+    const storedUsername = localStorage.getItem('username');
+  
+    if (storedUsername) {
+  
+      navigate(`/profile/${storedUsername}`);
     }
-  };
+  };  
 
   const handleSearchClick = () => {
     if (inputSearch !== '') {
