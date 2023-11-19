@@ -17,7 +17,7 @@ const Login = () => {
     });
 
     const [userData, setUserData] = useState({
-        email: "",
+        username: "",
         password: "",
     });
 
@@ -53,7 +53,7 @@ const Login = () => {
     const loginForm = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("/backend-link", userData);
+            const res = await axios.post("http://localhost:8080/api/v1/auth/login", userData);
             if (res.status !== 200) {
                 toast.error(res.data.msg);
             } else {
@@ -105,7 +105,7 @@ const Login = () => {
                             <input
                                 type="email"
                                 placeholder="Email"
-                                name="email"
+                                name="username"
                                 value={userData.email}
                                 onChange={handleChange_sign_in}
                                 required

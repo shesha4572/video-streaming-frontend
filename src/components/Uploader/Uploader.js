@@ -11,75 +11,55 @@ function Uploader() {
     const [videoName, setVideoName] = useState("");
     const [thumbnailUrl, setThumbnailUrl] = useState("");
     const [description, setDescription] = useState("");
-    const [chunkName, setChunkName] = useState("");
     const [videoSize, setVideoSize] = useState(0);
-    const BASE_URL = '';
+    const BASE_URL = 'http://localhost:8080';
     const URI = BASE_URL + '/api/v1/upload/initFile';
 
-    const chunkNames = async () => {
-        const token = localStorage.getItem('token');
+
+    const uploadFileChunks = async () => {
+        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDMyMTY0MiwiZXhwIjoxNzAxNjE3NjQyfQ.RiY_whqYEQt45B78ujzORe2A3drEbmw8dRbidbZeRyA"
+        //const token = localStorage.getItem('token');
         const form = new FormData();
         form.set("title", videoName);
         form.set("fileSize", videoSize);
         form.set("desc", description);
         form.set("thumbnailLink", thumbnailUrl);
-        // axios.post('endpoint', form, {
-        //     headers: {
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // }).then((res) => {
-        //     if (res.status === 200) {
-        //         setChunkName(res.data);
-        //     }
-        // });
-
-        try {
-            const response = await axios.post(URI, form, {
+            axios.post(URI, form, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type" : "application/json"
                 },
-            });
-
-            if (response.status === 200) {
-                setChunkName(response.data);
+            }).then(async (response) => {
+                if (response.status === 200) {
+                    console.log(response.data)
+                    const chunkName = response.data
+                    const chunkSize = 64 * 1000 * 1000;
+                    const chunkPromises = [];
+                    for (let i = 0; i < chunkName.length; i++) {
+                        console.log(i)
+                        const start = i * chunkSize;
+                        const end = Math.min(video.size, start + chunkSize);
+                        const chunk = video.slice(start, end);
+                        const formData = new FormData();
+                        formData.set("file", chunk);
+                        chunkPromises.push(
+                            axios.post(`${BASE_URL}/api/v1/upload/uploadChunk/${chunkName[i][0]}/${i}/${chunkName[i].slice(1).join(",")}`, formData, {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'multipart/form-data',
+                                },
+                            })
+                        );
+                        try {
+                            const responses = await Promise.all(chunkPromises);
+                            console.log("File chunks uploaded successfully:", responses);
+                        } catch (error) {
+                            console.error("Error uploading file chunks:", error);
+                        }
+                    }
+                }
             }
-        } catch (error) {
-            console.error("Error initializing file upload:", error);
-        }
-    };
-
-    const uploadFileChunks = async () => {
-        const token = localStorage.getItem('token');
-        await chunkNames();
-        const chunkSize = 64 * 1000 * 1000;
-        const chunkPromises = [];
-
-        for (let i = 0; i < chunkName.length; i++) {
-            const start = i * chunkSize;
-            const end = Math.min(video.size, start + chunkSize);
-            const chunk = video.slice(start, end);
-            const formData = new FormData();
-            formData.set("chunk", chunk);
-            formData.set("title", videoName);
-            formData.set("desc", description);
-            formData.set("thumbnailLink", thumbnailUrl);
-            chunkPromises.push(
-                axios.post(`${BASE_URL}/api/v1/upload/chunk/${chunkName[i]}`, formData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'multipart/form-data',
-                    },
-                })
-            );
-        }
-
-        try {
-            const responses = await Promise.all(chunkPromises);
-            console.log("File chunks uploaded successfully:", responses);
-        } catch (error) {
-            console.error("Error uploading file chunks:", error);
-        }
+        )
     };
 
     return (

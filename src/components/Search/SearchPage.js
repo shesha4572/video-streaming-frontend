@@ -50,7 +50,7 @@ function SearchPage() {
                         channel={video.ownerDisplayName}
                         description={video.desc}
                         image={video.thumbnailLink}
-                        internalField={video.internalFileId}
+                        internalFileId={video.internalFileId}
                     />
                     <hr />
                 </div>

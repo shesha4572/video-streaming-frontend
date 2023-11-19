@@ -1,39 +1,39 @@
-    import * as React from "react";
-    import { Button, Container, Slider, Tooltip, Typography } from "@mui/material";
-    import ReactPlayer from "react-player";
-    import Grid from "@mui/material/Grid";
-    import IconButton from "@mui/material/IconButton";
-    import FastRewindIcon from "@mui/icons-material/FastRewind";
-    import FastForwardIcon from "@mui/icons-material/FastForward";
-    import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-    import PauseIcon from "@mui/icons-material/Pause";
-    import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-    import FullscreenIcon from "@mui/icons-material/Fullscreen";
-    import Popover from "@mui/material/Popover";
-    import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-    import '../Video/RecommendedVideos.css'
-    import VideoCard from '../Video/VideoCard';
-    import { useState, useEffect } from "react";
-    import axios from "axios";
-    import logo from '../../assets/profile_icon.png';
+import * as React from "react";
+import { Button, Container, Slider, Tooltip, Typography } from "@mui/material";
+import ReactPlayer from "react-player";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import Popover from "@mui/material/Popover";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import '../Video/RecommendedVideos.css'
+import VideoCard from '../Video/VideoCard';
+import {useState, useEffect, useRef} from "react";
+import axios from "axios";
+import {useParams} from "react-router-dom";
+import {logo} from "../Layout/Header";
 
 
-    const baseURL = 'http://early-pugs-stand.loca.lt/api/v1';
-    var internalFileId = 'XXCo0UHlBvGWlMFXRzV6t5UxHpYFH2kA';
+const baseURL = 'http://evil-ways-make.loca.lt/api/v1';
 
 
-    function valuelabelcomponent(props) {
-        const { children, open, value } = props;
+function valuelabelcomponent(props) {
+    const { children, open, value } = props;
 
 
 
 
-        return (
-            <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
-                {children}
-            </Tooltip>
-        );
-    }
+    return (
+        <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+            {children}
+        </Tooltip>
+    );
+}
 
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -42,8 +42,8 @@
     }
 
     function Test() {
-        const playerRef = React.useRef(null);
-
+        const playerRef = useRef(null);
+        const {internalFileId} = useParams()
         const [playbackRate, setPlaybackRate] = React.useState(1);
         const [isPlaying, setIsPlaying] = React.useState(true);
         const [volume, setVolume] = React.useState(1);
@@ -125,18 +125,15 @@
             width: "100%",
             position: "relative",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            height: "0",
             paddingBottom: "56.25%",
             borderRadius: "10px",
             overflow: "hidden",
+            height: 0
         };
 
         const videoStyle = {
+            position: "relative",
             width: "100%",
-            height: "100%",
-            borderRadius: "10px",
         };
 
         const controlIconsStyle = {
@@ -177,8 +174,7 @@
         const [details, setDetails] = useState({});
 
 
-        
-        
+
         useEffect(() => {
             async function getInfo() {
                 try {
@@ -199,25 +195,29 @@
                         </Toolbar>
                     </AppBar>
                     <Toolbar /> */}
-                <Container maxWidth="md">
+                <Container >
                     <div
                         style={playerWrapperStyle}
-                        // onMouseEnter={handleMouseEnter}
-                        // onMouseLeave={handleMouseLeave}
+                         onMouseEnter={handleMouseEnter}
+                         onMouseLeave={handleMouseLeave}
 
                     >
+                        <div>
                         <ReactPlayer
                             ref={playerRef}
-                            style={videoStyle}
                             // style={{ width: "100%", height: "100%" }}
-                            url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                            style={videoStyle}
+                            url= {baseURL + "/video/get/" + internalFileId}
                             muted={false}
                             playing={isPlaying}
                             volume={volume}
                             playbackRate={playbackRate}
                             onProgress={(e) => setCurrentTime(e.playedSeconds)}
                             onDuration={(e) => setDuration(e)}
+                            width={"100%"}
+                            height={"auto"}
                         />
+                    </div>
                         {showControls && (
                             <div style={controlWrapperStyle}>
 
@@ -226,7 +226,7 @@
                                     direction="row"
                                     alignItems="center"
                                     justify="space-between"
-                                    style={{ padding: 16 }}
+                                    style={{ padding : "16"}}
                                 >
                                     <Grid item>
                                         <Typography variant="h5" style={{ color: "#fff" }}>
@@ -275,7 +275,7 @@
                                             <FastForwardIcon fontSize="inherit" />
                                         </IconButton>
                                     </Grid>
-                                )}            
+                                )}
                                 <Grid
                                     container
                                     direction="row"
