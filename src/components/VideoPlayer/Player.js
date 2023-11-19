@@ -175,7 +175,7 @@ function valuelabelcomponent(props) {
 
         const checkLikedStatus = async () => {
             try {
-                const response = await axios.get(`http://evil-ways-make.loca.lt/${internalFileId}`, {
+                const response = await axios.get(`http://evil-ways-make.loca.lt/hasLiked/${internalFileId}`, {
                     headers: {
                         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
                     },
@@ -187,26 +187,7 @@ function valuelabelcomponent(props) {
         };
 
 
-        const handleLikeClick = async () => {
-            try {
-                setLikesCount(likesCount + 1);
 
-                setHasLiked(true);
-
-                
-                await axios.post(`http://evil-ways-make.loca.lt/${internalFileId}`, {}, {
-                    headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
-                    },
-                });
-            } catch (error) {
-                console.error('Error liking the video:', error);
-
-                
-                setLikesCount(likesCount);
-                setHasLiked(false);
-            }
-        };
 
 
         const incrementViewCount = async () => {
@@ -218,33 +199,40 @@ function valuelabelcomponent(props) {
             }
         };
 
-        useEffect(() => {
-            async function getInfo() {
-                try {
-                    const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
-                    setDetails(response.data);
-                    await checkLikedStatus();
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
+        async function getInfo() {
+            try {
+                const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
+                setDetails(response.data);
+                await checkLikedStatus();
+                await incrementViewCount();
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
+        }
+
+        useEffect(() => {
             getInfo();
 
-            incrementViewCount();
         }, [internalFileId]);
 
-        useEffect(() => {
-            async function getInfo() {
-                try {
-                    const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
-                    setDetails(response.data);
-                    console.log(response.data);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
+        const handleLikeClick = async () => {
+            try {
+                await axios.post(`http://evil-ways-make.loca.lt/${internalFileId}`, {}, {
+                    headers: {
+                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
+                    },
+                });
+                setHasLiked(true);
+                setLikesCount(likesCount + 1)
+                await getInfo();
+            } catch (error) {
+                console.error('Error liking the video:', error);
+
+
+                setLikesCount(likesCount);
+                setHasLiked(false);
             }
-            getInfo();
-        }, []);
+        };
 
 
         return (
@@ -465,13 +453,15 @@ function valuelabelcomponent(props) {
         <Grid item style={{ display: 'flex', alignItems: 'center' }}>
             {/* Like button and count */}
             <Grid item>
-                <IconButton variant="contained" color="primary" onClick={handleLikeClick}>
+                <IconButton  color={hasLiked ? "error" : "default"} variant={hasLiked ? "contained" : "outlined"}  disabled={hasLiked} sx={{"&.Mui-disabled": {
+                        color: "#f30909"
+                    }}} onClick={handleLikeClick}>
                     <ThumbUpIcon />
                 </IconButton>
             </Grid>
             <Grid item>
                 <Typography variant="h6" style={{ marginLeft: '4px' }}>
-                    {likesCount}
+                    {details["likeCounter"]}
                 </Typography>
             </Grid>
             {/* Number of views and date uploaded */}
