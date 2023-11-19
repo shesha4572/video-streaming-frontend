@@ -41,7 +41,7 @@ function SearchPage() {
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             {videos.map((video) => (
-                <div key = {video.internalField}>
+                <div key = {video.internalFileId}>
                     <hr />
                     <VideoRow
                         title={video.title}
@@ -50,7 +50,7 @@ function SearchPage() {
                         channel={video.ownerDisplayName}
                         description={video.desc}
                         image={video.thumbnailLink}
-                        internalField={video.internalField}
+                        internalField={video.internalFileId}
                     />
                     <hr />
                 </div>

@@ -2,12 +2,11 @@ import React from 'react';
 import './VideoRow.css';
 import { Link } from 'react-router-dom';
 
-function VideoRow({ title, views, timestamp, channel, description, image, internalField }) {
-  console.log('internalField:', internalField);
+function VideoRow({ title, views, timestamp, channel, description, image, internalFileId }) {
   return (
     
     <div className='videoRow'>
-      <Link to={`/play/${internalField}`}>
+      <Link to={`/play/${internalFileId}`}>
         <img src={image} alt="" />
       </Link>
 
