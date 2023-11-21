@@ -4,6 +4,8 @@ import './Uploader.css';
 import axios from "axios";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 
 function Uploader() {
     const [video, setVideo] = useState(null);
@@ -15,7 +17,7 @@ function Uploader() {
     const [videoSize, setVideoSize] = useState(0);
     const BASE_URL = 'http://35.221.224.70:8080';
     const URI = BASE_URL + '/api/v1/upload/initFile';
-
+    const navigate = useNavigate();
 
     const uploadFileChunks = async () => {
         const token = Cookies.get('token');
@@ -60,7 +62,14 @@ function Uploader() {
                 }
             }
         )
+
+        alert('Video uploaded');
+
+        navigate('/home');
     };
+
+    
+      
 
     return (
         <div id="app-body-uploader">
