@@ -16,7 +16,7 @@ const VideoItem = ({ video }) => {
     <ol>
     <br />
     <Link to={`/play/${video.internalFileId}`}>
-      <img style={{ width: 300, height: 170 }} src={video.thumbnailLink} alt={video.title} />
+      <img style={{ width: 320, height: 180 }} src={video.thumbnailLink} alt={video.title} />
     </Link>
       <div className="video-info">
         <h3>{video.title}</h3>

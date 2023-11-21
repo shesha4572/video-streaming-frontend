@@ -6,13 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 const Login = () => {
 
     const [userDataSignUp, setUserDataSignUp] = useState({
         name: "",
+        displayName: "",
         username: "",
-        email: "",
         password: "",
     });
 
@@ -50,13 +51,6 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    // const axiosConfig = {
-    //     headers: {
-    //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    //         'Content-Type': 'application/json',
-    //     },
-    // };
-
     const loginForm = async (event) => {
         event.preventDefault();
         try {
@@ -64,8 +58,9 @@ const Login = () => {
             if (res.status !== 200) {
                 toast.error(res.data.msg);
             } else {
-                localStorage.setItem('token', '123');
-                localStorage.setItem('username', 'kunal');
+                console.log(res.data);
+                Cookies.set('token', res.data.token);
+                Cookies.set('username', res.data.displayName);
                 toast.success(res.data.msg);
                 navigate("/home");
             }
@@ -115,7 +110,7 @@ const Login = () => {
                                 type="email"
                                 placeholder="Email"
                                 name="username"
-                                value={userData.email}
+                                value={userData.username}
                                 onChange={handleChange_sign_in}
                                 required
                             />
@@ -180,8 +175,8 @@ const Login = () => {
                                 placeholder="Username"
                                 id="sign_up_username"
                                 onChange={handleChange_sign_up}
-                                name="username"
-                                value={userDataSignUp.username}
+                                name="displayName"
+                                value={userDataSignUp.displayName}
                                 required
                             />
                         </div>
@@ -192,8 +187,8 @@ const Login = () => {
                                 placeholder="Email"
                                 id="sign_up_email"
                                 onChange={handleChange_sign_up}
-                                name="email"
-                                value={userDataSignUp.email}
+                                name="username"
+                                value={userDataSignUp.username}
                                 required
                             />
                         </div>

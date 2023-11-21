@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import {Avatar, Typography} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 export const logo = 'https://img.icons8.com/dusk/64/movie-projector.png';
 
@@ -14,7 +15,7 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUsername(localStorage.getItem("username"))
+    setUsername(Cookies.get("username"))
   }, []);
 
 
