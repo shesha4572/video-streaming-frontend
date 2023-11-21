@@ -19,7 +19,7 @@ import {useParams} from "react-router-dom";
 import {logo} from "../Layout/Header";
 
 
-const baseURL = 'http://34.80.145.30:8080/api/v1';
+const baseURL = 'http://35.221.224.70:8080/api/v1';
 
 function valuelabelcomponent(props) {
     const { children, open, value } = props;
@@ -171,9 +171,10 @@ function valuelabelcomponent(props) {
 
         const checkLikedStatus = async () => {
             try {
-                const response = await axios.get(`http://34.80.145.30:8080/hasLiked/${internalFileId}`, {
+                const token = localStorage.getItem('token');
+                const response = await axios.get(`http://35.221.224.70:8080/hasLiked/${internalFileId}`, {
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
+                        Authorization: `Bearer ${token}`,
                     },
                 });
                 setHasLiked(response.status === 200);
@@ -213,9 +214,10 @@ function valuelabelcomponent(props) {
 
         const handleLikeClick = async () => {
             try {
-                await axios.post(`http://34.80.145.30:8080/${internalFileId}`, {}, {
+                const token = localStorage.getItem('token');
+                await axios.post(`http://35.221.224.70:8080/${internalFileId}`, {}, {
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDM4OTIwOCwiZXhwIjoxNzAxNjg1MjA4fQ.kRB0GHSOu2ibvNI-1A3qvSzj4SBCoKgcDMnNffzpO9o',
+                        Authorization: `Bearer ${token}`,
                     },
                 });
                 setHasLiked(true);

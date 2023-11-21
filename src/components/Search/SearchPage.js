@@ -14,7 +14,7 @@ function SearchPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://34.80.145.30:8080/api/v1/video/search/${searchString}`);
+                const response = await fetch(`http://35.221.224.70:8080/api/v1/video/search/${searchString}`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {

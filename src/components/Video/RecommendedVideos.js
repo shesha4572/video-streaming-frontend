@@ -10,7 +10,7 @@ function RecommendedVideos() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://34.80.145.30:8080/api/v1/video/search/a`);
+                const response = await fetch(`http://35.221.224.70:8080/api/v1/video/search/a`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {
@@ -26,7 +26,6 @@ function RecommendedVideos() {
                 setLoading(false);
             }
         };
-    
         fetchData();
     }, []);
     return (
@@ -40,6 +39,7 @@ function RecommendedVideos() {
             {videos.map((video) => (
                 <div key = {video.internalFileId} >
                     <VideoCard
+                        videoId={video.internalFileId}
                         title={video.title}
                         views={video.viewCounter}
                         timestamp={video.uploadedOn}

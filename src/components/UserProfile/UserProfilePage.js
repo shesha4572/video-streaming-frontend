@@ -10,7 +10,7 @@ const UserProfilePage = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch(`http://34.80.145.30:8080/api/v1/profile/user/${username}`);
+      const response = await fetch(`http://35.221.224.70:8080/api/v1/profile/user/${username}`);
       const data = await response.json();
       setUserData(data);
       setLoading(false);
