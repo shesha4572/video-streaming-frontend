@@ -5,6 +5,18 @@ import axios from "axios";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
 import Cookies from 'js-cookie';
 
+const navigate = useNavigate();
+
+const uploadFileChunks = () => {
+    // Your file upload logic here
+
+    // After successful upload
+    alert('Video uploaded');
+
+    // Redirect to /home after clicking OK in the alert
+    navigate('/home');
+};
+
 function Uploader() {
     const [video, setVideo] = useState(null);
     const [image, setImage] = useState(null);
@@ -61,6 +73,9 @@ function Uploader() {
             }
         )
     };
+
+    
+      
 
     return (
         <div id="app-body-uploader">
