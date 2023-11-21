@@ -26,7 +26,9 @@ function Sidebar() {
             <SidebarRow Icon={HistoryIcon} title="History" />
             <SidebarRow Icon={WatchLaterIcon} title="Watch Later" />
             <SidebarRow Icon={SettingsIcon} title="Settings" />
-            <SidebarRow Icon={LogoutIcon} title="Logout" />
+            <Link to='/'>
+                <SidebarRow Icon={LogoutIcon} title="Logout" />
+            </Link>
             <hr />
         </div>
     )

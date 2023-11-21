@@ -9,6 +9,7 @@
 .video-info {
   margin-top: 10px;
   text-align: left; 
+  max-height: 300px;
 }
 
 .video-info h3 {

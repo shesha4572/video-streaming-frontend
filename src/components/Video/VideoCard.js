@@ -1,7 +1,7 @@
 import React from 'react';
 import './VideoCard.css';
 import { Avatar } from '@mui/material';
-import {Link, useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function VideoCard({ image, title, channel, views, timestamp, channelImage , videoId }) {
     return (
@@ -13,7 +13,7 @@ function VideoCard({ image, title, channel, views, timestamp, channelImage , vid
                 <div className="videoCard_text">
                     <h4>{title}</h4>
                     <p>{channel}</p>
-                    <p>{views} . {timestamp}</p>
+                    <p>{views} | {timestamp}</p>
                 </div>
             </div>
         </div>
