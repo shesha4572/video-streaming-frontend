@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Header.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
-import { Avatar } from '@mui/material';
+import {Avatar, Typography} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const logo = 'https://img.icons8.com/dusk/64/movie-projector.png';
 
 function Header() {
   const [inputSearch, setInputSearch] = useState('');
-  const [usernameInput, setUsernameInput] = useState('');
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
-  const handleUsernameChange = () => {
-    const storedUsername = localStorage.getItem('username');
-  
-    if (storedUsername) {
-  
-      navigate(`/profile/${storedUsername}`);
-    }
-  };  
+  useEffect(() => {
+    setUsername(localStorage.getItem("username"))
+  }, []);
+
 
   const handleSearchClick = () => {
     if (inputSearch !== '') {
@@ -51,8 +47,13 @@ function Header() {
         <Link to='/upload'>
           <VideoCallIcon className='header_icon' />
         </Link>
-        
-        <Avatar className="header_icon" src="" alt="Avatar" onClick={handleUsernameChange} />
+
+        <Link to={`/profile/${username}`}>
+          <Avatar className="header_icon" src="" alt="Avatar" /> <span/>
+        </Link>
+        <Link to={`/profile/${username}`}>
+        <Typography>{username}</Typography>
+        </Link>
       </div>
     </div>
   );
