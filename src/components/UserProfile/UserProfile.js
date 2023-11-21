@@ -30,25 +30,19 @@ const UserProfile = ({ userData }) => {
             <div className="me-4">
               <MDBCard style={{ backgroundColor: 'white'}}>
                 <MDBCardBody>
-                  <MDBCardImage
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                    className="rounded-circle"
-                    alt="Profile"
-                    style={{ width: '120px', height: '120px' }}
-
-                  />
+                  
                 </MDBCardBody>
               </MDBCard>
             </div>
-            <div>
-              <MDBTypography tag="h4" className="mb-1">Name: {name}</MDBTypography>
-              <MDBCardText className="mb-1">
-                Username: {displayName}
-              </MDBCardText>
-              <MDBCardText className="small">
-                Joined On: {formatDate(createdOn)}
-              </MDBCardText>
-            </div>
+            <div className="text-center">
+            <MDBTypography tag="h4" className="mb-1">{name}</MDBTypography>
+            <MDBCardText className="mb-1">
+              {displayName}
+            </MDBCardText>
+            <MDBCardText className="small">
+              Joined On: {formatDate(createdOn)}
+            </MDBCardText>
+          </div>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
