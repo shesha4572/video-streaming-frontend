@@ -200,7 +200,6 @@ function Test() {
         try {
             await axios.post(`${baseURL}/video/view/${internalFileId}`);
         } catch (error) {
-
             console.error('Error incrementing view count:', error);
         }
     };
@@ -210,7 +209,6 @@ function Test() {
             const response = await axios.get(`${baseURL}/video/details/${internalFileId}`);
             setDetails(response.data);
             await checkLikedStatus();
-            await incrementViewCount();
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -218,6 +216,7 @@ function Test() {
 
     useEffect(() => {
         getInfo();
+        incrementViewCount();
         window.scrollTo(0, 0);
 
     }, [internalFileId]);
@@ -271,12 +270,6 @@ function Test() {
 
     return (
         <React.Fragment>
-            {/* <AppBar position="fixed">
-                        <Toolbar>
-                            <Typography variant="h6">React Video Player</Typography>
-                        </Toolbar>
-                    </AppBar>
-                    <Toolbar /> */}
             <Container >
                 <div
                     style={playerWrapperStyle}
@@ -287,7 +280,6 @@ function Test() {
                     <div>
                         <ReactPlayer
                             ref={playerRef}
-                            // style={{ width: "100%", height: "100%" }}
                             style={videoStyle}
                             url={baseURL + "/video/get/" + internalFileId}
                             muted={false}

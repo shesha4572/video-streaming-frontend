@@ -3,6 +3,7 @@ import { Stack } from "@mui/material";
 import './Uploader.css';
 import axios from "axios";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
+import Cookies from 'js-cookie';
 
 function Uploader() {
     const [video, setVideo] = useState(null);
@@ -12,12 +13,12 @@ function Uploader() {
     const [thumbnailUrl, setThumbnailUrl] = useState("");
     const [description, setDescription] = useState("");
     const [videoSize, setVideoSize] = useState(0);
-    const BASE_URL = 'http://35.221.224.70:8080/';
+    const BASE_URL = 'http://35.221.224.70:8080';
     const URI = BASE_URL + '/api/v1/upload/initFile';
 
 
     const uploadFileChunks = async () => {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token');
         const form = new FormData();
         form.set("title", videoName);
         form.set("fileSize", videoSize);
