@@ -17,7 +17,7 @@ function VideoRow({ title, views, timestamp, channel, description, image, intern
     
     <div className='videoRow'>
       <Link to={`/play/${internalFileId}`}>
-        <img style={{ width: 320, height: 180 }} src={image} alt="" />
+        <img src={image} alt="" />
       </Link>
       <div className="videoRow_text">
         <h3>{title}</h3>

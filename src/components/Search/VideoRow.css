@@ -8,8 +8,8 @@
 
 .videoRow>img {
     object-fit: contain;
-    width: 246px;
-    height: 138px;
+    width: 250px;
+    height: 140px;
     display: block;
     margin: auto;
 }
