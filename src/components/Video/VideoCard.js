@@ -4,6 +4,13 @@ import { Avatar } from '@mui/material';
 import { Link } from "react-router-dom";
 
 function VideoCard({ image, title, channel, views, timestamp, channelImage , videoId }) {
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    }
     return (
         <Link to={"/play/" + videoId}>
         <div className='videoCard' >
@@ -13,7 +20,7 @@ function VideoCard({ image, title, channel, views, timestamp, channelImage , vid
                 <div className="videoCard_text">
                     <h4>{title}</h4>
                     <p>{channel}</p>
-                    <p>{views} views | {timestamp}</p>
+                    <p>{views} views | {formatDate(timestamp)}</p>
                 </div>
             </div>
         </div>

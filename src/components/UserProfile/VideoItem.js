@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 
 const VideoItem = ({ video }) => {
 
-  const dateStringTimeStamp = video.uploadedOn
-
-  function formatDate(dateStringTimeStamp) {
-    const options = { year: "numeric", month: "long", day: "numeric"};
-    return new Date(dateStringTimeStamp).toLocaleDateString(undefined, options);
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
   }
 
   return (
@@ -21,7 +22,7 @@ const VideoItem = ({ video }) => {
       <div className="video-info">
         <h3>{video.title}</h3>
         <p>{video.desc}</p>
-        <p>{video.viewCounter} views | {formatDate} </p>
+        <p>{video.viewCounter} views | {formatDate(video.uploadedOn)} </p>
       </div>
     </ol>
       

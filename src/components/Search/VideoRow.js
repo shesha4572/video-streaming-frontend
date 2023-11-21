@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 function VideoRow({ title, views, timestamp, channel, description, image, internalFileId }) {
 
-  const dateStringTimeStamp = timestamp
-  
-  function formatDate(dateStringTimeStamp) {
-    const options = { year: "numeric", month: "long", day: "numeric"};
-    return new Date(dateStringTimeStamp).toLocaleDateString(undefined, options);
-  }
+    function formatDate(value) {
+        const date = new Date(value);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}-${month}-${year}`;
+    }
 
 
   return (
@@ -21,7 +22,7 @@ function VideoRow({ title, views, timestamp, channel, description, image, intern
       <div className="videoRow_text">
         <h3>{title}</h3>
         <p className='videoRow_headline'>
-          {channel} | {views} views | {formatDate} 
+          {channel} | {views} views | {formatDate(timestamp)}
         </p>
         <p className='videoRow_description'>
           {description}

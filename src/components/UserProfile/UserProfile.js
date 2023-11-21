@@ -11,13 +11,16 @@ const UserProfile = ({ userData }) => {
 
   const { name, displayName, createdOn, uploadedVideos } = userData;
 
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  }
+
   return (
     <div className="user-profile">
-      {/* <div className="profile-info">
-        <h3>Name: {name}</h3>
-        <p>Display Name: {displayName}</p>
-        <p>Joined on: {new Date(createdOn).toLocaleDateString()}</p>
-      </div> */}
       <div className="vh-100" style={{ backgroundColor: '#f2f2f2' }}>
   <MDBContainer className="container py-5 h-100 d-flex align-items-center justify-content-center" style={{ width: '500px' }}>
     <MDBRow className="justify-content-center">
@@ -38,12 +41,12 @@ const UserProfile = ({ userData }) => {
               </MDBCard>
             </div>
             <div>
-              <MDBTypography tag="h4" className="mb-1">{name}</MDBTypography>
+              <MDBTypography tag="h4" className="mb-1">Name: {name}</MDBTypography>
               <MDBCardText className="mb-1">
-                {displayName}
+                Username: {displayName}
               </MDBCardText>
               <MDBCardText className="small">
-                Joined On: {createdOn}
+                Joined On: {formatDate(createdOn)}
               </MDBCardText>
             </div>
           </MDBCardBody>

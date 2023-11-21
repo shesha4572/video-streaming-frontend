@@ -32,7 +32,7 @@ function SearchPage() {
         };
         fetchData();
     }, [searchString]);
-    
+
 
     return (
         <div className='searchPage'>
