@@ -14,7 +14,7 @@ function SearchPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://evil-ways-make.loca.lt/api/v1/video/search/${searchString}`);
+                const response = await fetch(`http://34.80.145.30:8080/api/v1/video/search/${searchString}`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {
@@ -22,7 +22,7 @@ function SearchPage() {
                     setVideos(data);
                     setLoading(false);
                 } else {
-                    throw new Error(`Unexpected response type: ${contentType}`);
+                    new Error(`Unexpected response type: ${contentType}`);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -30,7 +30,6 @@ function SearchPage() {
                 setLoading(false);
             }
         };
-    
         fetchData();
     }, [searchString]);
     

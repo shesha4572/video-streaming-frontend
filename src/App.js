@@ -44,7 +44,6 @@ function App() {
               <div>
                 <Header />
                 <div className="app_page">
-                  {/* <Sidebar /> */}
                   <Player />
                 </div>
               </div>

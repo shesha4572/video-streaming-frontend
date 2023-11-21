@@ -1,6 +1,5 @@
 import React from 'react';
 import VideoItem from './VideoItem';
-import VideoCard from "../Video/VideoCard";
 import './VideoList.css';
 
 const VideoList = ({ videos }) => {

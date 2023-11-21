@@ -23,10 +23,16 @@ function Sidebar() {
                 <SidebarRow Icon={FavoriteBorderIcon} title="Favourites" />
             </Link>
             <hr />
-            <SidebarRow Icon={HistoryIcon} title="History" />
-            <SidebarRow Icon={WatchLaterIcon} title="Watch Later" />
-            <SidebarRow Icon={SettingsIcon} title="Settings" />
-            <Link to='/'>
+            <Link to="/home">
+                <SidebarRow Icon={HistoryIcon} title="History" />
+            </Link>
+            <Link to="/home">
+                <SidebarRow Icon={WatchLaterIcon} title="Watch Later" />
+            </Link>
+            <Link to="/home">
+                <SidebarRow Icon={SettingsIcon} title="Settings" />
+            </Link>
+            <Link to="/">
                 <SidebarRow Icon={LogoutIcon} title="Logout" />
             </Link>
             <hr />

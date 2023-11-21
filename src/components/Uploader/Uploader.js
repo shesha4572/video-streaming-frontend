@@ -12,13 +12,13 @@ function Uploader() {
     const [thumbnailUrl, setThumbnailUrl] = useState("");
     const [description, setDescription] = useState("");
     const [videoSize, setVideoSize] = useState(0);
-    const BASE_URL = 'http://localhost:8080';
+    const BASE_URL = 'http://34.80.145.30:8080/';
     const URI = BASE_URL + '/api/v1/upload/initFile';
 
 
     const uploadFileChunks = async () => {
-        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDMyMTY0MiwiZXhwIjoxNzAxNjE3NjQyfQ.RiY_whqYEQt45B78ujzORe2A3drEbmw8dRbidbZeRyA"
-        //const token = localStorage.getItem('token');
+        // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGVtYWlsLmNvbSIsImlhdCI6MTcwMDMyMTY0MiwiZXhwIjoxNzAxNjE3NjQyfQ.RiY_whqYEQt45B78ujzORe2A3drEbmw8dRbidbZeRyA"
+        const token = localStorage.getItem('token');
         const form = new FormData();
         form.set("title", videoName);
         form.set("fileSize", videoSize);

@@ -10,7 +10,7 @@ function RecommendedVideos() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://evil-ways-make.loca.lt/api/v1/video/search/ `);
+                const response = await fetch(`http://34.80.145.30:8080/api/v1/video/search/a`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {
@@ -18,7 +18,7 @@ function RecommendedVideos() {
                     setVideos(data);
                     setLoading(false);
                 } else {
-                    throw new Error(`Unexpected response type: ${contentType}`);
+                    new Error(`Unexpected response type: ${contentType}`);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -34,10 +34,11 @@ function RecommendedVideos() {
             <h2>
                 Recommended Videos
             </h2>
+            <div className="recommendedVideos_videos">
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             {videos.map((video) => (
-                <div key = {video.internalFileId} className="recommendedVideos_videos">
+                <div key = {video.internalFileId} >
                     <VideoCard
                         title={video.title}
                         views={video.viewCounter}
@@ -49,6 +50,7 @@ function RecommendedVideos() {
                     <hr />
                 </div>
             ))}
+            </div>
             {/* <div className="recommendedVideos_videos">
                 <VideoCard
                     title="Machine Learning Full Course"

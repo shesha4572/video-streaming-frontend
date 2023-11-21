@@ -50,14 +50,23 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const axiosConfig = {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+        },
+    };
+
     const loginForm = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8080/api/v1/auth/login", userData);
+            const res = await axios.post("http://34.80.145.30:8080/api/v1/auth/login", userData, axiosConfig);
             if (res.status !== 200) {
                 toast.error(res.data.msg);
             } else {
                 toast.success(res.data.msg);
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('username', res.data.username);
                 navigate("/home");
             }
         } catch (error) {
@@ -75,10 +84,10 @@ const Login = () => {
             ...userDataSignUp,
         });
         try {
-            const res = await axios.post("/backend-link", userDataSignUp);
+            const res = await axios.post("/backend-link", userDataSignUp, axiosConfig);
             if (res.status === 200) {
                 toast.success("User registered successfully");
-                navigate("/home");
+                navigate("/login");
             } else {
                 toast.error("User registration failed" + res.msg);
             }
