@@ -457,17 +457,16 @@ function Test() {
                     }}
                 >
                     <Grid item xs={12}>
-                        {/* Layer 1: Video Title */}
-                        <Typography variant="h4" style={{ marginBottom: '8px', paddingTop: '10px' }}> {details['title']}</Typography>
+                        <strong>
+                            <Typography variant="h5" style={{ marginBottom: '8px', paddingTop: '10px' }}> {details['title']}</Typography>
+                        </strong>
                     </Grid>
 
                     <Grid item xs={12} style={{ marginBottom: '16px' }}>
                         <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
                             <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                                {/* Layer 2: Profile Icon, Name, Likes, Views, Date */}
                                 <Grid container alignItems="center" spacing={1}>
                                     <Grid item>
-                                        {/* Profile Icon */}
                                         <img
                                             src={logo}
                                             alt="Profile Icon"
@@ -483,7 +482,6 @@ function Test() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            {/* Like, Views, and Uploaded Pills */}
                             <Grid item style={{ display: 'flex', alignItems: 'center' }}>
                                 {/* Like icon */}
                                 <IconButton
@@ -512,12 +510,10 @@ function Test() {
                                         width: 'fit-content',
                                     }}
                                 >
-                                    {/* Likes count */}
                                     <Typography variant="h6" style={{ marginLeft: '4px', fontSize: '1rem' }}>
                                         Likes: {details["likeCounter"]}
                                     </Typography>
                                 </Paper>
-                                {/* Views */}
                                 <Paper
                                     style={{
                                         display: 'flex',
