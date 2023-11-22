@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 export const logo = 'https://img.icons8.com/dusk/64/movie-projector.png';
+export const channel = 'https://yt3.googleusercontent.com/7q9t5rjeujEZYqY1xMLn0mvT4Zc6MaZBYgtseDL2_Zh42AOhMze8ep7BUKdR5FnxytMy3csj=s176-c-k-c0x00ffffff-no-rj';
 
 function Header() {
   const [inputSearch, setInputSearch] = useState('');

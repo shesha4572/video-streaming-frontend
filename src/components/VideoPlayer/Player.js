@@ -15,7 +15,7 @@ import '../Video/RecommendedVideos.css'
 import VideoCard from '../Video/VideoCard';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
-import {logo} from "../Layout/Header";
+import {channel, logo} from "../Layout/Header";
 import Cookies from 'js-cookie';
 import Paper from "@mui/material/Paper";
 
@@ -451,9 +451,9 @@ function Test() {
                 </div>
                 <Paper
                     style={{
-                        borderRadius: '15px',  // Adjust the border radius for rounded corners
-                        padding: '16px',      // Adjust the padding inside the box
-                        backgroundColor: '#f2f2f2',  // Set the background color to a lighter grey
+                        borderRadius: '15px',
+                        padding: '16px',
+                        backgroundColor: '#f2f2f2',
                     }}
                 >
                     <Grid item xs={12}>
@@ -468,7 +468,7 @@ function Test() {
                                 <Grid container alignItems="center" spacing={1}>
                                     <Grid item>
                                         <img
-                                            src={logo}
+                                            src={channel}
                                             alt="Profile Icon"
                                             style={{ width: 30, height: 30, borderRadius: '50%' }}
                                         />

@@ -14,21 +14,35 @@ function VideoRow({ title, views, timestamp, channel, description, image, intern
 
 
   return (
-    
-    <div className='videoRow'>
-      <Link to={`/play/${internalFileId}`}>
-        <img src={image} width={250} height={140} alt="" />
-      </Link>
-      <div className="videoRow_text">
-        <h3>{title}</h3>
-        <p className='videoRow_headline'>
-          {channel} | {views} views | {formatDate(timestamp)}
-        </p>
-        <p className='videoRow_description'>
-          {description}
-        </p>
+
+      <div className='videoRow'>
+          <Link to={`/play/${internalFileId}`}>
+              <img src={image} width={320} height={180} alt="" />
+          </Link>
+          <div className="videoRow_text">
+              <h3>{title}</h3>
+              <p className='videoRow_headline'>
+                  {channel} | {views} views | {formatDate(timestamp)}
+              </p>
+              <p className='videoRow_description'>
+                  {description}
+              </p>
+          </div>
       </div>
-    </div>
+    // <div className='videoRow'>
+    //   <Link to={`/play/${internalFileId}`}>
+    //     <img src={image} width={250} height={140} alt="" />
+    //   </Link>
+    //   <div className="videoRow_text">
+    //     <h3>{title}</h3>
+    //     <p className='videoRow_headline'>
+    //       {channel} | {views} views | {formatDate(timestamp)}
+    //     </p>
+    //     <p className='videoRow_description'>
+    //       {description}
+    //     </p>
+    //   </div>
+    // </div>
   );
 }
 

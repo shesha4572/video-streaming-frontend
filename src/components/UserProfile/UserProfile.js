@@ -10,6 +10,14 @@ const UserProfile = ({ userData }) => {
 
   const { name, displayName, createdOn, uploadedVideos } = userData;
 
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  }
+
   return (
       <div className="user-profile">
       <div className="vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f2f2f2' }}>
@@ -28,10 +36,10 @@ const UserProfile = ({ userData }) => {
                 <strong>Name:</strong> {name}
               </div>
               <div className="id-card-row">
-                <strong>Display Name:</strong> {displayName}
+                <strong>Username:</strong> {displayName}
               </div>
               <div className="id-card-row">
-                <strong>Joined On:</strong> {createdOn}
+                <strong>Joined On:</strong> {formatDate(createdOn)}
               </div>
             </div>
           </div>
