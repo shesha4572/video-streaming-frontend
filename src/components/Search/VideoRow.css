@@ -4,13 +4,12 @@
     max-width: 700px;
     justify-content: center;
     align-items: center;
-    
 }
 
 .videoRow>img {
     object-fit: contain;
-    max-width: 150px;
-    max-height: 75px;
+    max-width: 250px;
+    max-height: 140px;
     display: block;
     margin: auto;
 }
