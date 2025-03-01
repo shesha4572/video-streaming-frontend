@@ -13,7 +13,7 @@ function Uploader() {
     const [thumbnailUrl, setThumbnailUrl] = useState("");
     const [description, setDescription] = useState("");
     const [videoSize, setVideoSize] = useState(0);
-    const BASE_URL = 'http://35.221.224.70:8080';
+    const BASE_URL = 'https://ytcdn.pvehome.me';
     const URI = BASE_URL + '/api/v1/upload/initFile';
 
 

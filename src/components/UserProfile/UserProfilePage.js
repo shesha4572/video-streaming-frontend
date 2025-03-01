@@ -7,10 +7,11 @@ const UserProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { username } = useParams();
+  const BASE_URL = "ytcdn.pvehome.me"
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch(`http://35.221.224.70:8080/api/v1/profile/user/${username}`);
+      const response = await fetch(`https://${BASE_URL}/api/v1/profile/user/${username}`);
       const data = await response.json();
       setUserData(data);
       setLoading(false);

@@ -50,11 +50,12 @@ const Login = () => {
     }
 
     const navigate = useNavigate();
+    const BASE_URL = "ytcdn.pvehome.me"
 
     const loginForm = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post("http://35.221.224.70:8080/api/v1/auth/login", userData);
+            const res = await axios.post(`https://${BASE_URL}/api/v1/auth/login`, userData);
             if (res.status !== 200) {
                 toast.error(res.data.msg);
             } else {
@@ -79,7 +80,7 @@ const Login = () => {
             ...userDataSignUp,
         });
         try {
-            const res = await axios.post("http://35.221.224.70:8080/api/v1/auth/register", userDataSignUp);
+            const res = await axios.post(`https://${BASE_URL}/api/v1/auth/register`, userDataSignUp);
             if (res.status === 200) {
                 toast.success("User registered successfully");
                 navigate("/login");

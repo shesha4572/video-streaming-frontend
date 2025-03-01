@@ -19,7 +19,7 @@ import {channel, logo} from "../Layout/Header";
 import Cookies from 'js-cookie';
 import Paper from "@mui/material/Paper";
 
-const baseURL = 'http://35.221.224.70:8080/api/v1';
+const baseURL = 'http://192.168.0.221:8080/api/v1';
 
 function valuelabelcomponent(props) {
     const { children, open, value } = props;
@@ -181,7 +181,7 @@ function Test() {
     const checkLikedStatus = async () => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`http://35.221.224.70:8080/hasLiked/${internalFileId}`, {
+            const response = await axios.get(`https://ytcdn.pvehome.me/hasLiked/${internalFileId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -224,7 +224,7 @@ function Test() {
     const handleLikeClick = async () => {
         try {
             const token = Cookies.get('token');
-            await axios.post(`http://35.221.224.70:8080/${internalFileId}`, {}, {
+            await axios.post(`https://ytcdn.pvehome.me/${internalFileId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -248,7 +248,7 @@ function Test() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://35.221.224.70:8080/api/v1/video/search/a`);
+                const response = await fetch(`https://ytcdn.pvehome.me/api/v1/video/search/a`);
                 const contentType = response.headers.get('content-type');
 
                 if (contentType && contentType.includes('application/json')) {

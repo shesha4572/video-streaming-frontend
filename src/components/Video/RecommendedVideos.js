@@ -10,7 +10,7 @@ function RecommendedVideos() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://35.221.224.70:8080/api/v1/video/search/a`);
+                const response = await fetch(`https://ytcdn.pvehome.me/api/v1/video/search/a`);
                 const contentType = response.headers.get('content-type');
     
                 if (contentType && contentType.includes('application/json')) {
